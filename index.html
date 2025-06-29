@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>すいさい絵画教室 - 小学生のための水彩画学習サイト</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="palette-icon">🎨</span>
+                    <div class="logo-text">
+                        <h1>すいさい絵画教室</h1>
+                        <p>小学生のための水彩画学習サイト</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- カテゴリ選択画面 -->
+            <div id="category-screen" class="screen active">
+                <div class="intro-section">
+                    <h2>何を描きたいですか？</h2>
+                    <p>下のカテゴリから選んでください</p>
+                </div>
+
+                <div class="categories-grid">
+                    <div class="category-card" data-category="sky-clouds">
+                        <div class="category-icon">☁️</div>
+                        <h3>空と雲</h3>
+                        <p>3個の動画があります</p>
+                        <button class="category-btn">
+                            <span class="play-icon">▶</span>
+                            動画を見る
+                        </button>
+                    </div>
+
+                    <div class="category-card" data-category="nature">
+                        <div class="category-icon">🌳</div>
+                        <h3>自然・植物</h3>
+                        <p>4個の動画があります</p>
+                        <button class="category-btn">
+                            <span class="play-icon">▶</span>
+                            動画を見る
+                        </button>
+                    </div>
+
+                    <div class="category-card" data-category="vehicles">
+                        <div class="category-icon">🚗</div>
+                        <h3>乗り物</h3>
+                        <p>3個の動画があります</p>
+                        <button class="category-btn">
+                            <span class="play-icon">▶</span>
+                            動画を見る
+                        </button>
+                    </div>
+
+                    <div class="category-card" data-category="buildings">
+                        <div class="category-icon">🏠</div>
+                        <h3>建物</h3>
+                        <p>3個の動画があります</p>
+                        <button class="category-btn">
+                            <span class="play-icon">▶</span>
+                            動画を見る
+                        </button>
+                    </div>
+
+                    <div class="category-card" data-category="people">
+                        <div class="category-icon">👨‍👩‍👧‍👦</div>
+                        <h3>人物</h3>
+                        <p>3個の動画があります</p>
+                        <button class="category-btn">
+                            <span class="play-icon">▶</span>
+                            動画を見る
+                        </button>
+                    </div>
+
+                    <div class="category-card" data-category="ground">
+                        <div class="category-icon">🛤️</div>
+                        <h3>地面・道</h3>
+                        <p>3個の動画があります</p>
+                        <button class="category-btn">
+                            <span class="play-icon">▶</span>
+                            動画を見る
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 使い方説明 -->
+                <div class="usage-guide">
+                    <h3>📖 使い方</h3>
+                    <div class="usage-steps">
+                        <div class="usage-step">
+                            <div class="step-number">1</div>
+                            <p>描きたいものの<br>カテゴリを選ぶ</p>
+                        </div>
+                        <div class="usage-step">
+                            <div class="step-number">2</div>
+                            <p>動画を見ながら<br>一緒に描いてみる</p>
+                        </div>
+                        <div class="usage-step">
+                            <div class="step-number">3</div>
+                            <p>上手に描けたら<br>次の動画にチャレンジ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 動画選択画面 -->
+            <div id="video-list-screen" class="screen">
+                <div class="screen-header">
+                    <button id="back-to-categories" class="back-btn">← 戻る</button>
+                    <div class="screen-title">
+                        <span id="category-icon-display"></span>
+                        <h2 id="category-name-display"></h2>
+                    </div>
+                </div>
+
+                <div id="videos-grid" class="videos-grid">
+                    <!-- 動画カードがJavaScriptで動的に生成されます -->
+                </div>
+            </div>
+
+            <!-- 動画視聴画面 -->
+            <div id="video-watch-screen" class="screen">
+                <div class="screen-header">
+                    <button id="back-to-videos" class="back-btn">← 戻る</button>
+                    <div class="screen-title">
+                        <span id="video-category-icon"></span>
+                        <h2 id="video-title-display"></h2>
+                        <span id="video-difficulty-badge" class="difficulty-badge"></span>
+                    </div>
+                </div>
+
+                <div class="video-content">
+                    <div class="video-main">
+                        <div class="video-player" id="video-player-container">
+                          <div class="video-placeholder">
+                            <div class="play-icon-large">▶</div>
+                            <p>動画を選択してください</p>
+                            <small>カテゴリから動画を選んで学習を始めましょう</small>
+                          </div>
+                        </div>
+
+                        <div class="video-info">
+                            <h3 id="video-info-title"></h3>
+                            <p id="video-info-description"></p>
+
+                            <!-- 印刷ボタンを追加 -->
+                            <div class="action-buttons">
+                                <button id="print-guide-btn" class="print-btn">
+                                    📄 学習ガイドを印刷
+                                </button>
+                            </div>
+
+                            <div class="preparation-box">
+                                <h4>📝 準備するもの</h4>
+                                <ul>
+                                    <li>• 水彩絵の具セット</li>
+                                    <li>• 筆（太筆・細筆）</li>
+                                    <li>• 画用紙</li>
+                                    <li>• 水入れ</li>
+                                    <li>• ティッシュペーパー</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-sidebar">
+                        <div class="sidebar-section">
+                            <h4>⭐ おすすめ動画</h4>
+                            <div id="recommended-videos">
+                                <!-- おすすめ動画がJavaScriptで動的に生成されます -->
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h4>💡 描くコツ</h4>
+                            <ul class="tips-list">
+                                <li>• 最初は薄い色から塗り始めよう</li>
+                                <li>• 筆に水をつけすぎないように注意</li>
+                                <li>• 色が乾いてから次の色を重ねよう</li>
+                                <li>• 失敗を恐れずにチャレンジしよう</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 印刷用ガイドのモーダル -->
+    <div id="print-modal" class="print-modal">
+        <div class="print-modal-content">
+            <div class="print-modal-header">
+                <h2>学習ガイド</h2>
+                <button id="close-print-modal" class="close-btn">×</button>
+            </div>
+            <div id="print-guide-content" class="print-guide-content">
+                <!-- 印刷用コンテンツがここに生成されます -->
+            </div>
+            <div class="print-modal-footer">
+                <button id="print-btn" class="print-action-btn">🖨️ 印刷する</button>
+                <button id="close-modal-btn" class="cancel-btn">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
